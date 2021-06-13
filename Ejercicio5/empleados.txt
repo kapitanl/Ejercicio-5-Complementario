@@ -1,0 +1,3 @@
+Carlos,Sanchez,20-01-1980,45678.08
+Jose,Matuck,20-01-1970,54545.08
+Emanuel,Mirecle,20-01-1980,50475.08
