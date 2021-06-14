@@ -1,8 +1,10 @@
 import java.io.FileReader;
 import java.io.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Datos {
@@ -19,7 +21,14 @@ public class Datos {
         crearEmpleado(empleados);
 
         String letra= "M";
-        devolverEmpleados(letra, empleados);
+        devolverEmpleadosSegun(letra, empleados);
+
+        getEmpleadoMasJovenYMasViejo(empleados);
+
+        getEmpleadoQueMasGanaYElQueMenos(empleados);
+
+
+       
 
     }
 
@@ -29,7 +38,65 @@ public class Datos {
 
 
 
-    private static void devolverEmpleados(String letra, List<String> empleados) {
+    private static void getEmpleadoQueMasGanaYElQueMenos(List<String> empleados) {
+
+        System.out.println();
+        List<Double> salarios = new ArrayList<>();
+
+        for (String empl : empleados) {
+
+            double salario =  Double.parseDouble(empl.split(",")[3]);
+
+            salarios.add(salario);
+            
+        }
+
+        Collections.sort(salarios);
+
+        int ult = salarios.size()-1;
+        System.out.println("El que mas gana: $"+ salarios.get(ult));
+
+        System.out.println("El que menos gana: $"+ salarios.get(0));
+
+    }
+
+
+
+
+    private static void getEmpleadoMasJovenYMasViejo(List<String> empleados) {
+
+        System.out.println();
+        List<Integer> edades = new ArrayList<>();
+
+        for (String empl : empleados) {
+
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate fechaNaciminto =  LocalDate.parse(empl.split(",")[2], formato);
+
+            LocalDate fechaActual = LocalDate.now();
+
+            Period edad = Period.between(fechaNaciminto, fechaActual);
+            System.out.println();
+            int edadString = edad.getYears();
+
+            edades.add(edadString);
+    
+            
+        }
+
+        Collections.sort(edades);
+        System.out.println(edades);
+        
+        System.out.println("El mas joven tiene: "+ edades.get(0));
+        int ult = edades.size()-1;
+        System.out.println("El mas viejo tiene: "+ edades.get(ult));
+
+    }
+
+
+
+
+    private static void devolverEmpleadosSegun(String letra, List<String> empleados) {
         System.out.println("Los empleados que segun su Apellido empice con la letra: " + letra + " son: "  );
         for (String empl : empleados) {
 
@@ -40,8 +107,10 @@ public class Datos {
             if ( le == ap.charAt(0)){
                 System.out.println("Empleado: " + empl);
             }
+        
 
         }
+        System.out.println();
     }
 
 
@@ -49,7 +118,8 @@ public class Datos {
 
     private static void crearEmpleado(List<String> empleados) {
         // Creando un array "empleado" para luego asignarlos en el bucle "for"
-        Empleado empleado[] = new Empleado[3];
+        int sise = empleados.size();
+        Empleado empleado[] = new Empleado[sise];
 
         int cont = 0;
 
@@ -82,6 +152,7 @@ public class Datos {
         }
 
         System.out.println("Proceso terminado.");
+        System.out.println();
     }
 
 
@@ -114,6 +185,8 @@ public class Datos {
 
             e.printStackTrace();
         }
+
+        System.out.println();
 
     }
    

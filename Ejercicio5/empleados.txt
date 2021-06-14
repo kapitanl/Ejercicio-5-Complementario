@@ -1,3 +1,4 @@
-Carlos,Sanchez,20-01-1980,45678.08
-Jose,Matuck,20-01-1970,54545.08
-Emanuel,Mirecle,20-01-1980,50475.08
+Carlos,Sanchez,08-03-1997,45678.08
+Jose,Matuck,20-07-1970,54545.08
+Emanuel,Mirecle,20-02-1980,50475.08
+Julian,Gueman,20-08-1974,70000.08
